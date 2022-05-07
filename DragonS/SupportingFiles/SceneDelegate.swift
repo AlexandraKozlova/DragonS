@@ -18,13 +18,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
          window?.windowScene = windowScene
          window?.rootViewController = createSearchNC()
          window?.makeKeyAndVisible()
+        
     }
     
     func createSearchNC() -> UINavigationController {
         let dragonsListVC = DragonsListVC()
         dragonsListVC.title = "DragonS"
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.blue,
+            NSAttributedString.Key.foregroundColor: UIColor.black,
             NSAttributedString.Key.font: UIFont(name: "Avenir-Heavy", size: 25)!
         ]
         return UINavigationController(rootViewController: dragonsListVC)

@@ -11,6 +11,8 @@
 		1F8639A528255D2B000EDA0F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8639A428255D2B000EDA0F /* SceneDelegate.swift */; };
 		1F8639A728255D2B000EDA0F /* DragonsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8639A628255D2B000EDA0F /* DragonsListVC.swift */; };
 		1F8639AC28255D2C000EDA0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F8639AB28255D2C000EDA0F /* Assets.xcassets */; };
+		1FB1A7DA28270C7C0071CCD7 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1A7D928270C7C0071CCD7 /* ErrorMessage.swift */; };
+		1FB1A7DD2827105C0071CCD7 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 1FB1A7DC2827105C0071CCD7 /* SDWebImage */; };
 		1FB3F5E02825A9A800208929 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5DF2825A9A800208929 /* NetworkManager.swift */; };
 		1FB3F5E22825B30500208929 /* DragonsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5E12825B30500208929 /* DragonsList.swift */; };
 		1FB3F5E52825C24C00208929 /* DragonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5E42825C24C00208929 /* DragonsCell.swift */; };
@@ -24,6 +26,7 @@
 		1F8639A628255D2B000EDA0F /* DragonsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsListVC.swift; sourceTree = "<group>"; };
 		1F8639AB28255D2C000EDA0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F8639B028255D2C000EDA0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1FB1A7D928270C7C0071CCD7 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
 		1FB3F5DF2825A9A800208929 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		1FB3F5E12825B30500208929 /* DragonsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsList.swift; sourceTree = "<group>"; };
 		1FB3F5E42825C24C00208929 /* DragonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsCell.swift; sourceTree = "<group>"; };
@@ -35,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FB1A7DD2827105C0071CCD7 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -64,10 +68,19 @@
 				1FB3F5DD2825A94C00208929 /* Models */,
 				1FB3F5DC2825A91600208929 /* ViewControllers */,
 				1FB3F5E32825C22800208929 /* CustomViews */,
+				1FB1A7D828270C240071CCD7 /* Utilities */,
 				1FB3F5DB2825A8F400208929 /* SupportingFiles */,
 				1F8639B028255D2C000EDA0F /* Info.plist */,
 			);
 			path = DragonS;
+			sourceTree = "<group>";
+		};
+		1FB1A7D828270C240071CCD7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				1FB1A7D928270C7C0071CCD7 /* ErrorMessage.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		1FB3F5DB2825A8F400208929 /* SupportingFiles */ = {
@@ -129,6 +142,9 @@
 			dependencies = (
 			);
 			name = DragonS;
+			packageProductDependencies = (
+				1FB1A7DC2827105C0071CCD7 /* SDWebImage */,
+			);
 			productName = DragonS;
 			productReference = 1F86399F28255D2B000EDA0F /* DragonS.app */;
 			productType = "com.apple.product-type.application";
@@ -157,6 +173,9 @@
 				Base,
 			);
 			mainGroup = 1F86399628255D2B000EDA0F;
+			packageReferences = (
+				1FB1A7DB2827105C0071CCD7 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 1F8639A028255D2B000EDA0F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -186,6 +205,7 @@
 				1F8639A728255D2B000EDA0F /* DragonsListVC.swift in Sources */,
 				1F8639A328255D2B000EDA0F /* AppDelegate.swift in Sources */,
 				1FB3F5E22825B30500208929 /* DragonsList.swift in Sources */,
+				1FB1A7DA28270C7C0071CCD7 /* ErrorMessage.swift in Sources */,
 				1FB3F5E52825C24C00208929 /* DragonsCell.swift in Sources */,
 				1FB3F5E92825C55500208929 /* DLabel.swift in Sources */,
 				1F8639A528255D2B000EDA0F /* SceneDelegate.swift in Sources */,
@@ -387,6 +407,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1FB1A7DB2827105C0071CCD7 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1FB1A7DC2827105C0071CCD7 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FB1A7DB2827105C0071CCD7 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 1F86399728255D2B000EDA0F /* Project object */;
 }
