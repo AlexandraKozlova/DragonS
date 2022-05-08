@@ -11,21 +11,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
          window = UIWindow(frame: windowScene.coordinateSpace.bounds)
          window?.windowScene = windowScene
          window?.rootViewController = createSearchNC()
          window?.makeKeyAndVisible()
-        
+
     }
     
     func createSearchNC() -> UINavigationController {
         let dragonsListVC = DragonsListVC()
         dragonsListVC.title = "DragonS"
         UINavigationBar.appearance().titleTextAttributes = [
-            NSAttributedString.Key.foregroundColor: UIColor.black,
+            NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
             NSAttributedString.Key.font: UIFont(name: "Avenir-Heavy", size: 25)!
         ]
         return UINavigationController(rootViewController: dragonsListVC)

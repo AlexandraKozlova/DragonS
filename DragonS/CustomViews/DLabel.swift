@@ -18,20 +18,17 @@ class DLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
-    convenience init(fontName: String, fontSize: CGFloat, textAlignment: NSTextAlignment ) {
+    convenience init(fontSize: CGFloat, textAlignment: NSTextAlignment, textColor: UIColor) {
         self.init(frame: .zero)
-        font = UIFont(name: fontName, size: fontSize)
+        font = UIFont(name: "Avenir-Heavy", size: fontSize)
         self.textAlignment = textAlignment
+        self.textColor = textColor
     }
     
     private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
-        textColor = .label
         adjustsFontSizeToFitWidth = true
         minimumScaleFactor = 0.9
         lineBreakMode = .byTruncatingHead
     }
-    
-    
-    
 }

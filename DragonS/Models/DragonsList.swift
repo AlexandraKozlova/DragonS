@@ -17,5 +17,4 @@ struct DragonsList: Decodable {
         case name
         case id
     }
-    
 }

@@ -10,24 +10,15 @@ import SDWebImage
 
 class DragonsListVC: UIViewController {
     
-    let tableView = UITableView()
     var dragonsList = [DragonsList]()
+    
+    let tableView = UITableView()
+    let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureTableView()
         getDragonsList()
-    }
-    
-    private func configureTableView() {
-        view.addSubview(tableView)
-
-        tableView.frame = view.bounds
-        tableView.backgroundColor = .systemGray6
-        tableView.rowHeight = 350
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(DragonCell.self, forCellReuseIdentifier: DragonCell.reuseID)
     }
     
     private func getDragonsList() {
@@ -43,6 +34,27 @@ class DragonsListVC: UIViewController {
                 }
             }
         }
+    }
+    
+    private func configureTableView() {
+        view.addSubview(tableView)
+
+        tableView.frame = view.bounds
+        tableView.backgroundColor = .systemGray6
+        tableView.rowHeight = 350
+        tableView.separatorColor = .clear
+        tableView.refreshControl = refreshControl
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(DragonCell.self, forCellReuseIdentifier: DragonCell.reuseID)
+    }
+    
+    private func configureRefreshControl() {
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
+    @objc private func refresh(sender: UIRefreshControl) {
+        sender.endRefreshing()
     }
 }
 
@@ -64,7 +76,19 @@ class DragonsListVC: UIViewController {
         }
         
         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+            let dragon = dragonsList[indexPath.row]
+            NetworkManager.shared.getDragonInfo(at: dragon.id) { [weak self] result in
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let dragon):
+                        let destinationVC = DragonInfoVC(currentDragon: dragon)
+                        self.navigationController?.pushViewController(destinationVC, animated: true)
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
         }
     }
 

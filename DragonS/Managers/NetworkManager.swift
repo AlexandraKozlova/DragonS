@@ -33,8 +33,30 @@ class NetworkManager {
 
         }.resume()
     }
+    
+    func getDragonInfo(at id: String, completion: @escaping (Result<DragonInfo, ErrorMessage>) -> Void) {
+        let urlString = "https://api.spacexdata.com/v4/dragons/\(id)"
+        
+        guard let url = URL(string: urlString) else { return }
+        URLSession.shared.dataTask(with: url) { data, _, error in
+            if let _ = error {
+                completion(.failure(.unableToComplite))
+            }
+            guard let data = data else {
+                completion(.failure(.invalidData))
+                return
+            }
+            
+            do {
+                let dragon = try JSONDecoder().decode(DragonInfo.self, from: data)
+                completion(.success(dragon))
+            } catch {
+                completion(.failure(.invalidData))
+            }
 
+        }.resume()
     }
+}
 
 
 
