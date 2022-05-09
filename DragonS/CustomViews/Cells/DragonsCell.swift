@@ -15,7 +15,6 @@ class DragonCell: UITableViewCell {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = imageView.frame.size.width / 2
         imageView.clipsToBounds = true
         return imageView
     }()

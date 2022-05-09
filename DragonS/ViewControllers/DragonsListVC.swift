@@ -19,6 +19,7 @@ class DragonsListVC: UIViewController {
         super.viewDidLoad()
         configureTableView()
         getDragonsList()
+        configureRefreshControl()
     }
     
     private func getDragonsList() {
@@ -30,7 +31,7 @@ class DragonsListVC: UIViewController {
                     self.dragonsList = dragonsList
                     self.tableView.reloadData()
                 case .failure(let error):
-                    print(error)
+                    self.presentAlertOnMainThread(title: "Oops, something went wrong!", message: error.rawValue, buttonTitle: "Okay")
                 }
             }
         }
@@ -53,8 +54,9 @@ class DragonsListVC: UIViewController {
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
-    @objc private func refresh(sender: UIRefreshControl) {
-        sender.endRefreshing()
+    @objc private func refresh() {
+        tableView.reloadData()
+        tableView.refreshControl?.endRefreshing()
     }
 }
 
@@ -85,7 +87,7 @@ class DragonsListVC: UIViewController {
                         let destinationVC = DragonInfoVC(currentDragon: dragon)
                         self.navigationController?.pushViewController(destinationVC, animated: true)
                     case .failure(let error):
-                        print(error)
+                        self.presentAlertOnMainThread(title: "Oops, something went wrong!", message: error.rawValue, buttonTitle: "Okay")
                     }
                 }
             }

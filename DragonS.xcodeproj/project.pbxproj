@@ -11,6 +11,11 @@
 		1F8639A528255D2B000EDA0F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8639A428255D2B000EDA0F /* SceneDelegate.swift */; };
 		1F8639A728255D2B000EDA0F /* DragonsListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8639A628255D2B000EDA0F /* DragonsListVC.swift */; };
 		1F8639AC28255D2C000EDA0F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1F8639AB28255D2C000EDA0F /* Assets.xcassets */; };
+		1F91AAD32829779600DC3C0F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AAD22829779600DC3C0F /* UIViewController+Ext.swift */; };
+		1F91AAD628297BEF00DC3C0F /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AAD528297BEF00DC3C0F /* UIView+Ext.swift */; };
+		1F91AAD828297CC700DC3C0F /* GalleryCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AAD728297CC700DC3C0F /* GalleryCollectionView.swift */; };
+		1F91AADB2829822200DC3C0F /* GalleryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F91AADA2829822200DC3C0F /* GalleryCell.swift */; };
+		1F9B53FC2829A1A400F7F926 /* SizeConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B53FB2829A1A400F7F926 /* SizeConstants.swift */; };
 		1FA4AFE028279FA700C7A434 /* DragonInfoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4AFDF28279FA700C7A434 /* DragonInfoVC.swift */; };
 		1FA4AFE22827A05A00C7A434 /* DragonInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA4AFE12827A05A00C7A434 /* DragonInfo.swift */; };
 		1FB1A7DA28270C7C0071CCD7 /* ErrorMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB1A7D928270C7C0071CCD7 /* ErrorMessage.swift */; };
@@ -30,6 +35,11 @@
 		1F8639A628255D2B000EDA0F /* DragonsListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsListVC.swift; sourceTree = "<group>"; };
 		1F8639AB28255D2C000EDA0F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1F8639B028255D2C000EDA0F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1F91AAD22829779600DC3C0F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
+		1F91AAD528297BEF00DC3C0F /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		1F91AAD728297CC700DC3C0F /* GalleryCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCollectionView.swift; sourceTree = "<group>"; };
+		1F91AADA2829822200DC3C0F /* GalleryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCell.swift; sourceTree = "<group>"; };
+		1F9B53FB2829A1A400F7F926 /* SizeConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeConstants.swift; sourceTree = "<group>"; };
 		1FA4AFDF28279FA700C7A434 /* DragonInfoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonInfoVC.swift; sourceTree = "<group>"; };
 		1FA4AFE12827A05A00C7A434 /* DragonInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonInfo.swift; sourceTree = "<group>"; };
 		1FB1A7D928270C7C0071CCD7 /* ErrorMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorMessage.swift; sourceTree = "<group>"; };
@@ -76,6 +86,7 @@
 				1FB3F5DD2825A94C00208929 /* Models */,
 				1FB3F5DC2825A91600208929 /* ViewControllers */,
 				1FB3F5E32825C22800208929 /* CustomViews */,
+				1F91AAD42829779D00DC3C0F /* Extensions */,
 				1FB1A7D828270C240071CCD7 /* Utilities */,
 				1FB3F5DB2825A8F400208929 /* SupportingFiles */,
 				1F8639B028255D2C000EDA0F /* Info.plist */,
@@ -83,10 +94,29 @@
 			path = DragonS;
 			sourceTree = "<group>";
 		};
+		1F91AAD42829779D00DC3C0F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1F91AAD22829779600DC3C0F /* UIViewController+Ext.swift */,
+				1F91AAD528297BEF00DC3C0F /* UIView+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		1F91AAD9282981FE00DC3C0F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1FB3F5E42825C24C00208929 /* DragonsCell.swift */,
+				1F91AADA2829822200DC3C0F /* GalleryCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		1FB1A7D828270C240071CCD7 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
 				1FB1A7D928270C7C0071CCD7 /* ErrorMessage.swift */,
+				1F9B53FB2829A1A400F7F926 /* SizeConstants.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -130,10 +160,11 @@
 		1FB3F5E32825C22800208929 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				1FB3F5E42825C24C00208929 /* DragonsCell.swift */,
+				1F91AAD9282981FE00DC3C0F /* Cells */,
 				1FFD9CAC282841E600A7DEAF /* BioLabel.swift */,
 				1FB3F5E82825C55500208929 /* DLabel.swift */,
 				1FFD9CAE2828499E00A7DEAF /* WikipediaButton.swift */,
+				1F91AAD728297CC700DC3C0F /* GalleryCollectionView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -214,14 +245,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FA4AFE22827A05A00C7A434 /* DragonInfo.swift in Sources */,
+				1F91AAD32829779600DC3C0F /* UIViewController+Ext.swift in Sources */,
 				1FB3F5E02825A9A800208929 /* NetworkManager.swift in Sources */,
+				1F91AAD828297CC700DC3C0F /* GalleryCollectionView.swift in Sources */,
 				1F8639A728255D2B000EDA0F /* DragonsListVC.swift in Sources */,
+				1F91AAD628297BEF00DC3C0F /* UIView+Ext.swift in Sources */,
 				1FA4AFE028279FA700C7A434 /* DragonInfoVC.swift in Sources */,
 				1FFD9CAD282841E600A7DEAF /* BioLabel.swift in Sources */,
 				1F8639A328255D2B000EDA0F /* AppDelegate.swift in Sources */,
 				1FB3F5E22825B30500208929 /* DragonsList.swift in Sources */,
+				1F9B53FC2829A1A400F7F926 /* SizeConstants.swift in Sources */,
 				1FFD9CAF2828499E00A7DEAF /* WikipediaButton.swift in Sources */,
 				1FB1A7DA28270C7C0071CCD7 /* ErrorMessage.swift in Sources */,
+				1F91AADB2829822200DC3C0F /* GalleryCell.swift in Sources */,
 				1FB3F5E52825C24C00208929 /* DragonsCell.swift in Sources */,
 				1FB3F5E92825C55500208929 /* DLabel.swift in Sources */,
 				1F8639A528255D2B000EDA0F /* SceneDelegate.swift in Sources */,
