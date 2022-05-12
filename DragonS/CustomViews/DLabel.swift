@@ -20,7 +20,7 @@ class DLabel: UILabel {
     
     convenience init(fontSize: CGFloat, textAlignment: NSTextAlignment, textColor: UIColor) {
         self.init(frame: .zero)
-        font = UIFont(name: "Avenir-Heavy", size: fontSize)
+        font = UIFont(name: "Copperplate", size: fontSize)
         self.textAlignment = textAlignment
         self.textColor = textColor
     }

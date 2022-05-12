@@ -22,10 +22,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func createSearchNC() -> UINavigationController {
         let dragonsListVC = DragonsListVC()
-        dragonsListVC.title = "DragonS"
+        dragonsListVC.title = "DragonSpaceX"
         UINavigationBar.appearance().titleTextAttributes = [
             NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.1019607857, green: 0.2784313858, blue: 0.400000006, alpha: 1),
-            NSAttributedString.Key.font: UIFont(name: "Avenir-Heavy", size: 25)!
+            NSAttributedString.Key.font: UIFont(name: "Copperplate-Bold", size: 25)!
         ]
         return UINavigationController(rootViewController: dragonsListVC)
     }

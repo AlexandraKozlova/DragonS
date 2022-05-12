@@ -11,7 +11,7 @@ import SDWebImage
 class DragonsListVC: UIViewController {
     
     var dragonsList = [DragonsList]()
-    
+  
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
     
@@ -23,9 +23,11 @@ class DragonsListVC: UIViewController {
     }
     
     private func getDragonsList() {
+        showLoadingView()
         NetworkManager.shared.getDragons { [weak self] result in
             guard let self = self else { return }
             DispatchQueue.main.async {
+                self.dissmisLoadingView()
                 switch result {
                 case .success(let dragonsList):
                     self.dragonsList = dragonsList
@@ -39,10 +41,10 @@ class DragonsListVC: UIViewController {
     
     private func configureTableView() {
         view.addSubview(tableView)
-
+        
         tableView.frame = view.bounds
         tableView.backgroundColor = .systemGray6
-        tableView.rowHeight = 350
+        tableView.rowHeight = (tableView.frame.height / 2) - 50
         tableView.separatorColor = .clear
         tableView.refreshControl = refreshControl
         tableView.delegate = self
@@ -61,41 +63,43 @@ class DragonsListVC: UIViewController {
 }
 
 
-    extension DragonsListVC: UITableViewDelegate, UITableViewDataSource {
-        
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return dragonsList.count
-        }
-        
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            let cell = tableView.dequeueReusableCell(withIdentifier: DragonCell.reuseID) as! DragonCell
-            let dragon = dragonsList[indexPath.row]
-            let imageUrl = dragon.flickrImages[0]
-            let url = URL(string: imageUrl)
-            cell.pictureView.sd_setImage(with: url)
-            cell.dragonName.text = dragon.name
-            return cell
-        }
-        
-        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            let dragon = dragonsList[indexPath.row]
-            NetworkManager.shared.getDragonInfo(at: dragon.id) { [weak self] result in
-                guard let self = self else { return }
-                DispatchQueue.main.async {
-                    switch result {
-                    case .success(let dragon):
-                        let destinationVC = DragonInfoVC(currentDragon: dragon)
-                        self.navigationController?.pushViewController(destinationVC, animated: true)
-                    case .failure(let error):
-                        self.presentAlertOnMainThread(title: "Oops, something went wrong!", message: error.rawValue, buttonTitle: "Okay")
-                    }
+extension DragonsListVC: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dragonsList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: DragonCell.reuseID) as! DragonCell
+        let dragon = dragonsList[indexPath.row]
+        let imageUrl = dragon.flickrImages[0]
+        let url = URL(string: imageUrl)
+        cell.pictureView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
+        cell.dragonName.text = dragon.name
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        showLoadingView()
+        let dragon = dragonsList[indexPath.row]
+        NetworkManager.shared.getDragonInfo(at: dragon.id) { [weak self] result in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.dissmisLoadingView()
+                switch result {
+                case .success(let dragon):
+                    let destinationVC = DragonInfoVC(currentDragon: dragon)
+                    self.navigationController?.pushViewController(destinationVC, animated: true)
+                case .failure(let error):
+                    self.presentAlertOnMainThread(title: "Oops, something went wrong!", message: error.rawValue, buttonTitle: "Okay")
                 }
             }
         }
     }
+}
 
 
-   
+
 
 
 

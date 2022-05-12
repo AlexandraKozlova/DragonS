@@ -11,13 +11,7 @@ class DragonCell: UITableViewCell {
     
     static let reuseID = "DragonCell"
     
-    let pictureView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
-    }()
+    let pictureView = DragonImage(frame: .zero)
     let dragonName = DLabel(fontSize: 25, textAlignment: .center, textColor: #colorLiteral(red: 0.1411764771, green: 0.3960784376, blue: 0.5647059083, alpha: 1))
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -33,17 +27,15 @@ class DragonCell: UITableViewCell {
         addSubview(pictureView)
         addSubview(dragonName)
         backgroundColor = .systemGray6
-        pictureView.image = UIImage(named: "logo")
-        pictureView.layer.cornerRadius = 50
         dragonName.text = "Dragon1"
         
         let padding: CGFloat = 10
         
         NSLayoutConstraint.activate([
             pictureView.topAnchor.constraint(equalTo: self.topAnchor, constant: padding),
-            pictureView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            pictureView.heightAnchor.constraint(equalToConstant: 300),
-            pictureView.widthAnchor.constraint(equalToConstant: 300),
+            pictureView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -40),
+            pictureView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 30),
+            pictureView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -30),
             
             dragonName.topAnchor.constraint(equalTo: pictureView.bottomAnchor, constant: 5),
             dragonName.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: padding),

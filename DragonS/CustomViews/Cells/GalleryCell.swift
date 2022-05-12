@@ -11,7 +11,7 @@ class GalleryCell: UICollectionViewCell {
     
     static let reuseID = "GalleryCell"
     
-    let imageDragon = UIImageView()
+    let imageDragon = DragonImage(frame: .zero)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,11 +25,6 @@ class GalleryCell: UICollectionViewCell {
     private func configure() {
         addSubview(imageDragon)
         imageDragon.pinToEdges(of: self)
-        imageDragon.translatesAutoresizingMaskIntoConstraints = false
-        imageDragon.backgroundColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        imageDragon.contentMode = .scaleAspectFill
-        imageDragon.layer.cornerRadius = 50
-        imageDragon.clipsToBounds = true
     }
     
 }

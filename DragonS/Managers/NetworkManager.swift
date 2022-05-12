@@ -5,7 +5,7 @@
 //  Created by Aleksandra on 06.05.2022.
 //
 
-import Foundation
+import UIKit
 
 class NetworkManager {
     
@@ -53,10 +53,10 @@ class NetworkManager {
             } catch {
                 completion(.failure(.invalidData))
             }
-
         }.resume()
     }
 }
+
 
 
 
