@@ -25,6 +25,9 @@
 		1FB3F5E22825B30500208929 /* DragonsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5E12825B30500208929 /* DragonsList.swift */; };
 		1FB3F5E52825C24C00208929 /* DragonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5E42825C24C00208929 /* DragonsCell.swift */; };
 		1FB3F5E92825C55500208929 /* DLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5E82825C55500208929 /* DLabel.swift */; };
+		1FEA89B5282E9C990071AA85 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FEA89B4282E9C990071AA85 /* RealmSwift */; };
+		1FEA89B7282E9CB60071AA85 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA89B6282E9CB60071AA85 /* StorageManager.swift */; };
+		1FEA89B9282E9DE50071AA85 /* DragonsListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA89B8282E9DE50071AA85 /* DragonsListRealm.swift */; };
 		1FFD9CAD282841E600A7DEAF /* BioLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFD9CAC282841E600A7DEAF /* BioLabel.swift */; };
 		1FFD9CAF2828499E00A7DEAF /* WikipediaButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FFD9CAE2828499E00A7DEAF /* WikipediaButton.swift */; };
 /* End PBXBuildFile section */
@@ -49,6 +52,8 @@
 		1FB3F5E12825B30500208929 /* DragonsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsList.swift; sourceTree = "<group>"; };
 		1FB3F5E42825C24C00208929 /* DragonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsCell.swift; sourceTree = "<group>"; };
 		1FB3F5E82825C55500208929 /* DLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLabel.swift; sourceTree = "<group>"; };
+		1FEA89B6282E9CB60071AA85 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		1FEA89B8282E9DE50071AA85 /* DragonsListRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsListRealm.swift; sourceTree = "<group>"; };
 		1FFD9CAC282841E600A7DEAF /* BioLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioLabel.swift; sourceTree = "<group>"; };
 		1FFD9CAE2828499E00A7DEAF /* WikipediaButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1FEA89B5282E9C990071AA85 /* RealmSwift in Frameworks */,
 				1FB1A7DD2827105C0071CCD7 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -146,6 +152,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB3F5E12825B30500208929 /* DragonsList.swift */,
+				1FEA89B8282E9DE50071AA85 /* DragonsListRealm.swift */,
 				1FA4AFE12827A05A00C7A434 /* DragonInfo.swift */,
 			);
 			path = Models;
@@ -155,6 +162,7 @@
 			isa = PBXGroup;
 			children = (
 				1FB3F5DF2825A9A800208929 /* NetworkManager.swift */,
+				1FEA89B6282E9CB60071AA85 /* StorageManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -190,6 +198,7 @@
 			name = DragonS;
 			packageProductDependencies = (
 				1FB1A7DC2827105C0071CCD7 /* SDWebImage */,
+				1FEA89B4282E9C990071AA85 /* RealmSwift */,
 			);
 			productName = DragonS;
 			productReference = 1F86399F28255D2B000EDA0F /* DragonS.app */;
@@ -221,6 +230,7 @@
 			mainGroup = 1F86399628255D2B000EDA0F;
 			packageReferences = (
 				1FB1A7DB2827105C0071CCD7 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				1FEA89B3282E9C990071AA85 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 1F8639A028255D2B000EDA0F /* Products */;
 			projectDirPath = "";
@@ -256,12 +266,14 @@
 				1FB3AF9D282C02BE00932F0E /* DragonImage.swift in Sources */,
 				1FA4AFE028279FA700C7A434 /* DragonInfoVC.swift in Sources */,
 				1FFD9CAD282841E600A7DEAF /* BioLabel.swift in Sources */,
+				1FEA89B7282E9CB60071AA85 /* StorageManager.swift in Sources */,
 				1F8639A328255D2B000EDA0F /* AppDelegate.swift in Sources */,
 				1FB3F5E22825B30500208929 /* DragonsList.swift in Sources */,
 				1F9B53FC2829A1A400F7F926 /* SizeConstants.swift in Sources */,
 				1FFD9CAF2828499E00A7DEAF /* WikipediaButton.swift in Sources */,
 				1FB1A7DA28270C7C0071CCD7 /* ErrorMessage.swift in Sources */,
 				1F91AADB2829822200DC3C0F /* GalleryCell.swift in Sources */,
+				1FEA89B9282E9DE50071AA85 /* DragonsListRealm.swift in Sources */,
 				1FB3F5E52825C24C00208929 /* DragonsCell.swift in Sources */,
 				1FB3F5E92825C55500208929 /* DLabel.swift in Sources */,
 				1F8639A528255D2B000EDA0F /* SceneDelegate.swift in Sources */,
@@ -475,6 +487,14 @@
 				kind = branch;
 			};
 		};
+		1FEA89B3282E9C990071AA85 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -482,6 +502,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1FB1A7DB2827105C0071CCD7 /* XCRemoteSwiftPackageReference "SDWebImage" */;
 			productName = SDWebImage;
+		};
+		1FEA89B4282E9C990071AA85 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1FEA89B3282E9C990071AA85 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

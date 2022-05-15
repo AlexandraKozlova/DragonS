@@ -16,7 +16,6 @@ struct DragonInfo: Decodable {
     let dryMassKg: Int
     let heightWTrunk: Meters
     
-    
     enum CodingKeys: String, CodingKey {
         case firstFlight = "first_flight"
         case flickrImages = "flickr_images"
@@ -28,6 +27,6 @@ struct DragonInfo: Decodable {
     }
     
     struct Meters: Decodable {
-        let meters: Double
+        var meters: Double
     }
 }

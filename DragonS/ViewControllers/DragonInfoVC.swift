@@ -23,8 +23,6 @@ class DragonInfoVC: UIViewController {
     let scrollView = UIScrollView()
     let contentView = UIView()
     var galleryDragons = GalleryCollectionView()
-    let stackOfImages = UIStackView()
-    let stackOfLabels = UIStackView()
     let firstFlightImage = UIImageView()
     let firstFlightLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
     let heightOfTrunkImage = UIImageView()

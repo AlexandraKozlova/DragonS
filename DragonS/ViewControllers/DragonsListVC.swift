@@ -11,15 +11,27 @@ import SDWebImage
 class DragonsListVC: UIViewController {
     
     var dragonsList = [DragonsList]()
-  
+    var casheList = [DragonsList]()
+    
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        casheList = StorageManager.shared.getCasheList()
+        print(casheList)
         configureTableView()
-        getDragonsList()
+        getDragons()
         configureRefreshControl()
+    }
+    
+    private func getDragons() {
+        guard casheList.isEmpty else {
+            dragonsList = casheList
+            getDragonsList()
+            return
+        }
+        getDragonsList()
     }
     
     private func getDragonsList() {
@@ -31,6 +43,7 @@ class DragonsListVC: UIViewController {
                 switch result {
                 case .success(let dragonsList):
                     self.dragonsList = dragonsList
+                    StorageManager.shared.saveObject(dragonsList: dragonsList)
                     self.tableView.reloadData()
                 case .failure(let error):
                     self.presentAlertOnMainThread(title: "Oops, something went wrong!", message: error.rawValue, buttonTitle: "Okay")
@@ -57,6 +70,7 @@ class DragonsListVC: UIViewController {
     }
     
     @objc private func refresh() {
+        getDragonsList()
         tableView.reloadData()
         tableView.refreshControl?.endRefreshing()
     }
@@ -76,6 +90,7 @@ extension DragonsListVC: UITableViewDelegate, UITableViewDataSource {
         let url = URL(string: imageUrl)
         cell.pictureView.sd_setImage(with: url, placeholderImage: UIImage(named: "placeholder"))
         cell.dragonName.text = dragon.name
+        cell.selectionStyle = .none
         return cell
     }
     

@@ -30,7 +30,6 @@ class NetworkManager {
             } catch {
                 completion(.failure(.invalidData))
             }
-
         }.resume()
     }
     
