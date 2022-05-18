@@ -7,6 +7,7 @@
 
 import UIKit
 import SDWebImage
+import Combine
 
 class DragonInfoVC: UIViewController {
     
@@ -20,16 +21,18 @@ class DragonInfoVC: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
     let scrollView = UIScrollView()
     let contentView = UIView()
     var galleryDragons = GalleryCollectionView()
+    let stackOfImages = DStackView()
+    let stackOfLabels = DStackView()
     let firstFlightImage = UIImageView()
     let firstFlightLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
     let heightOfTrunkImage = UIImageView()
     let heightOfTrunkLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
     let dryMassImage = UIImageView()
     let dryMassLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
-    let viewForDescription = UIView()
     let descriptionLabel = BioLabel()
     let wikiButton = WikipediaButton()
     
@@ -39,14 +42,10 @@ class DragonInfoVC: UIViewController {
         configureGalleryDragons()
         configureViewDidLoad()
         updateUIElements()
-        configureFirstFlightImage()
-        configureFirstFlightLabel()
-        configureHeightOfTrunkImage()
-        congigureHeightOfTrunkLabel()
-        configureDryMassImage()
-        configureDryMassLabel()
         configureDescriptionLabel()
         congigureWikiButton()
+        configureStackOFImages()
+        configureStackOfLabel()
     }
     
     private func updateUIElements() {
@@ -80,7 +79,7 @@ class DragonInfoVC: UIViewController {
         ])
     }
     
-    func configureGalleryDragons() {
+    private func configureGalleryDragons() {
         contentView.addSubview(galleryDragons)
         galleryDragons.delegate = self
         galleryDragons.dataSource = self
@@ -93,75 +92,35 @@ class DragonInfoVC: UIViewController {
         ])
     }
     
-    private func configureFirstFlightImage() {
-        contentView.addSubview(firstFlightImage)
-        firstFlightImage.translatesAutoresizingMaskIntoConstraints = false
-        firstFlightImage.image = UIImage(named: "rocket")
-
-        NSLayoutConstraint.activate([
-            firstFlightImage.topAnchor.constraint(equalTo: galleryDragons.bottomAnchor, constant: 5),
-            firstFlightImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: SizeConstants.leftDistanceToView),
-            firstFlightImage.heightAnchor.constraint(equalToConstant: 25),
-            firstFlightImage.widthAnchor.constraint(equalToConstant: 25)
-        ])
-    }
-    
-    private func configureFirstFlightLabel() {
-        contentView.addSubview(firstFlightLabel)
+    private func configureStackOFImages() {
+        contentView.addSubview(stackOfImages)
+        
+        let arrayOfImages = [firstFlightImage, heightOfTrunkImage, dryMassImage]
+        for image in arrayOfImages {
+            image.translatesAutoresizingMaskIntoConstraints = false
+            image.image = UIImage(named: "rocket")
+            stackOfImages.addArrangedSubview(image)
+        }
         
         NSLayoutConstraint.activate([
-            firstFlightLabel.topAnchor.constraint(equalTo: galleryDragons.bottomAnchor, constant: 5),
-            firstFlightLabel.leadingAnchor.constraint(equalTo: firstFlightImage.trailingAnchor, constant: 5),
-            firstFlightLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -SizeConstants.rightDistanceToView),
-            firstFlightLabel.heightAnchor.constraint(equalToConstant: 25)
+            stackOfImages.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 330),
+            stackOfImages.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: SizeConstants.leftDistanceToView),
+            stackOfImages.widthAnchor.constraint(equalToConstant: 25),
+            stackOfImages.heightAnchor.constraint(equalToConstant: 85)
         ])
     }
     
-    private func configureHeightOfTrunkImage() {
-        contentView.addSubview(heightOfTrunkImage)
-        heightOfTrunkImage.translatesAutoresizingMaskIntoConstraints = false
-        heightOfTrunkImage.image = UIImage(named: "rocket")
-
-        NSLayoutConstraint.activate([
-            heightOfTrunkImage.topAnchor.constraint(equalTo: firstFlightImage.bottomAnchor, constant: 5),
-            heightOfTrunkImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: SizeConstants.leftDistanceToView),
-            heightOfTrunkImage.heightAnchor.constraint(equalToConstant: 25),
-            heightOfTrunkImage.widthAnchor.constraint(equalToConstant: 25)
-        ])
-    }
-    
-    private func congigureHeightOfTrunkLabel() {
-        contentView.addSubview(heightOfTrunkLabel)
+    private func configureStackOfLabel() {
+        contentView.addSubview(stackOfLabels)
+        stackOfLabels.addArrangedSubview(firstFlightLabel)
+        stackOfLabels.addArrangedSubview(heightOfTrunkLabel)
+        stackOfLabels.addArrangedSubview(dryMassLabel)
         
         NSLayoutConstraint.activate([
-            heightOfTrunkLabel.topAnchor.constraint(equalTo: firstFlightLabel.bottomAnchor, constant: 5),
-            heightOfTrunkLabel.leadingAnchor.constraint(equalTo: heightOfTrunkImage.trailingAnchor, constant: 5),
-            heightOfTrunkLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -SizeConstants.rightDistanceToView),
-            heightOfTrunkLabel.heightAnchor.constraint(equalToConstant: 25)
-        ])
-    }
-    
-    private func configureDryMassImage() {
-        contentView.addSubview(dryMassImage)
-        dryMassImage.translatesAutoresizingMaskIntoConstraints = false
-        dryMassImage.image = UIImage(named: "rocket")
-
-        NSLayoutConstraint.activate([
-            dryMassImage.topAnchor.constraint(equalTo: heightOfTrunkImage.bottomAnchor, constant: 5),
-            dryMassImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: SizeConstants.leftDistanceToView),
-            dryMassImage.heightAnchor.constraint(equalToConstant: 25),
-            dryMassImage.widthAnchor.constraint(equalToConstant: 25)
-        ])
-    }
-    
-    private func configureDryMassLabel() {
-        contentView.addSubview(dryMassLabel)
-        
-        NSLayoutConstraint.activate([
-            dryMassLabel.topAnchor.constraint(equalTo: heightOfTrunkLabel.bottomAnchor, constant: 5),
-            dryMassLabel.leadingAnchor.constraint(equalTo: dryMassImage.trailingAnchor, constant: 5),
-            dryMassLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -SizeConstants.rightDistanceToView),
-            dryMassLabel.heightAnchor.constraint(equalToConstant: 25)
+            stackOfLabels.topAnchor.constraint(equalTo: stackOfImages.topAnchor),
+            stackOfLabels.leadingAnchor.constraint(equalTo: stackOfImages.trailingAnchor, constant: 5),
+            stackOfLabels.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -SizeConstants.rightDistanceToView),
+            stackOfLabels.heightAnchor.constraint(equalToConstant: 85)
         ])
     }
     
@@ -169,7 +128,7 @@ class DragonInfoVC: UIViewController {
         contentView.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
-            descriptionLabel.topAnchor.constraint(equalTo: dryMassLabel.bottomAnchor, constant: 5),
+            descriptionLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 420),
             descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: SizeConstants.leftDistanceToView),
             descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -SizeConstants.rightDistanceToView),
             descriptionLabel.heightAnchor.constraint(equalToConstant: 230)

@@ -7,11 +7,13 @@
 
 import UIKit
 import SDWebImage
+import Combine
 
 class DragonsListVC: UIViewController {
     
     var dragonsList = [DragonsList]()
     var casheList = [DragonsList]()
+    private var subscriptions = Set<AnyCancellable>()
     
     let tableView = UITableView()
     let refreshControl = UIRefreshControl()
@@ -19,7 +21,6 @@ class DragonsListVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         casheList = StorageManager.shared.getCasheList()
-        print(casheList)
         configureTableView()
         getDragons()
         configureRefreshControl()
@@ -36,20 +37,19 @@ class DragonsListVC: UIViewController {
     
     private func getDragonsList() {
         showLoadingView()
-        NetworkManager.shared.getDragons { [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
+        NetworkManager.shared.getDragons()
+            .sink(receiveCompletion: {[weak self] (completion) in
+                guard let self = self else { return }
                 self.dissmisLoadingView()
-                switch result {
-                case .success(let dragonsList):
-                    self.dragonsList = dragonsList
-                    StorageManager.shared.saveObject(dragonsList: dragonsList)
-                    self.tableView.reloadData()
-                case .failure(let error):
+                if case let .failure( error) = completion {
                     self.presentAlertOnMainThread(title: "Oops, something went wrong!", message: error.rawValue, buttonTitle: "Okay")
                 }
-            }
-        }
+            }, receiveValue: { dragonsList in
+                self.dragonsList = dragonsList
+                StorageManager.shared.saveObject(dragonsList: dragonsList)
+                self.tableView.reloadData()
+            })
+            .store(in: &self.subscriptions)
     }
     
     private func configureTableView() {
@@ -97,19 +97,18 @@ extension DragonsListVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         showLoadingView()
         let dragon = dragonsList[indexPath.row]
-        NetworkManager.shared.getDragonInfo(at: dragon.id) { [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
+        NetworkManager.shared.getDragonInfo(at: dragon.id)
+            .sink(receiveCompletion: {[weak self] (completion) in
+                guard let self = self else { return }
                 self.dissmisLoadingView()
-                switch result {
-                case .success(let dragon):
-                    let destinationVC = DragonInfoVC(currentDragon: dragon)
-                    self.navigationController?.pushViewController(destinationVC, animated: true)
-                case .failure(let error):
+                if case let .failure( error) = completion {
                     self.presentAlertOnMainThread(title: "Oops, something went wrong!", message: error.rawValue, buttonTitle: "Okay")
                 }
-            }
-        }
+            }, receiveValue: { currentDragon in
+                let destinationVC = DragonInfoVC(currentDragon: currentDragon)
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            })
+            .store(in: &self.subscriptions)
     }
 }
 

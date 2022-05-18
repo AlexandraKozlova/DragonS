@@ -6,53 +6,86 @@
 //
 
 import UIKit
+import Combine
 
 class NetworkManager {
     
     static let shared = NetworkManager()
+    private var subscriptions = Set<AnyCancellable>()
     
-    func getDragons(completion: @escaping (Result<[DragonsList], ErrorMessage>) -> Void) {
-        let urlString = "https://api.spacexdata.com/v4/dragons"
-        
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            if let _ = error {
-                completion(.failure(.unableToComplite))
-            }
-            guard let data = data else {
-                completion(.failure(.invalidData))
+    func getDragons() -> Future<[DragonsList], ErrorMessage> {
+        return Future<[DragonsList], ErrorMessage> {
+            [weak self] promise in
+            let urlString = "https://api.spacexdata.com/v4/dragons"
+            guard let self = self else { return }
+            guard let url = URL(string: urlString) else {
+                promise(.failure(.invalidUrl))
                 return
             }
             
-            do {
-                let dragons = try JSONDecoder().decode([DragonsList].self, from: data)
-                completion(.success(dragons))
-            } catch {
-                completion(.failure(.invalidData))
-            }
-        }.resume()
+            URLSession.shared.dataTaskPublisher(for: url)
+                .tryMap { (data, response) -> Data in
+                    guard let hhtpResponse = response as? HTTPURLResponse,
+                          200 == hhtpResponse.statusCode
+                    else {
+                        throw ErrorMessage.invalidUrl
+                    }
+                    return data
+                }
+                .decode(type: [DragonsList].self, decoder: JSONDecoder())
+                .receive(on: RunLoop.main)
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        switch error {
+                        case _ as URLError:
+                            promise(.failure(.invalidUrl))
+                        case _ as DecodingError:
+                            promise(.failure(.invalidData))
+                        default:
+                            promise(.failure(.unableToComplite))
+                        }
+                    }
+                } receiveValue: { promise(.success(($0))) }
+                .store(in: &self.subscriptions)
+        }
     }
     
-    func getDragonInfo(at id: String, completion: @escaping (Result<DragonInfo, ErrorMessage>) -> Void) {
-        let urlString = "https://api.spacexdata.com/v4/dragons/\(id)"
+    func getDragonInfo(at id: String) -> Future<DragonInfo, ErrorMessage> {
         
-        guard let url = URL(string: urlString) else { return }
-        URLSession.shared.dataTask(with: url) { data, _, error in
-            if let _ = error {
-                completion(.failure(.unableToComplite))
-            }
-            guard let data = data else {
-                completion(.failure(.invalidData))
+        return Future<DragonInfo, ErrorMessage> {
+            [weak self] promise in
+            let urlString = "https://api.spacexdata.com/v4/dragons/\(id)"
+            guard let self = self else { return }
+            guard let url = URL(string: urlString) else {
+                promise(.failure(.invalidUrl))
                 return
             }
             
-            do {
-                let dragon = try JSONDecoder().decode(DragonInfo.self, from: data)
-                completion(.success(dragon))
-            } catch {
-                completion(.failure(.invalidData))
-            }
-        }.resume()
+            URLSession.shared.dataTaskPublisher(for: url)
+                .tryMap { (data, response) -> Data in
+                    guard let hhtpResponse = response as? HTTPURLResponse,
+                          200 == hhtpResponse.statusCode
+                    else {
+                        throw ErrorMessage.unableToComplite
+                    }
+                    return data
+                }
+                .decode(type: DragonInfo.self, decoder: JSONDecoder())
+                .receive(on: RunLoop.main)
+                .sink { completion in
+                    if case let .failure(error) = completion {
+                        switch error {
+                        case _ as URLError:
+                            promise(.failure(.invalidUrl))
+                        case _ as DecodingError:
+                            promise(.failure(.invalidData))
+                        default:
+                            promise(.failure(.unableToComplite))
+                        }
+                    }
+                } receiveValue: { promise(.success(($0))) }
+                .store(in: &self.subscriptions)
+        }
     }
 }
 

@@ -17,6 +17,8 @@ extension UIViewController {
             let alertVC = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertVC.modalPresentationStyle = .overFullScreen
             alertVC.modalTransitionStyle = .crossDissolve
+            let okayAction = UIAlertAction(title: buttonTitle, style: .cancel)
+            alertVC.addAction(okayAction)
             self.present(alertVC, animated: true)
         }
     }

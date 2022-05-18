@@ -25,6 +25,7 @@
 		1FB3F5E22825B30500208929 /* DragonsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5E12825B30500208929 /* DragonsList.swift */; };
 		1FB3F5E52825C24C00208929 /* DragonsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5E42825C24C00208929 /* DragonsCell.swift */; };
 		1FB3F5E92825C55500208929 /* DLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FB3F5E82825C55500208929 /* DLabel.swift */; };
+		1FDBABD828317BF700C09F30 /* DStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FDBABD728317BF700C09F30 /* DStackView.swift */; };
 		1FEA89B5282E9C990071AA85 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1FEA89B4282E9C990071AA85 /* RealmSwift */; };
 		1FEA89B7282E9CB60071AA85 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA89B6282E9CB60071AA85 /* StorageManager.swift */; };
 		1FEA89B9282E9DE50071AA85 /* DragonsListRealm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FEA89B8282E9DE50071AA85 /* DragonsListRealm.swift */; };
@@ -52,6 +53,7 @@
 		1FB3F5E12825B30500208929 /* DragonsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsList.swift; sourceTree = "<group>"; };
 		1FB3F5E42825C24C00208929 /* DragonsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsCell.swift; sourceTree = "<group>"; };
 		1FB3F5E82825C55500208929 /* DLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLabel.swift; sourceTree = "<group>"; };
+		1FDBABD728317BF700C09F30 /* DStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DStackView.swift; sourceTree = "<group>"; };
 		1FEA89B6282E9CB60071AA85 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		1FEA89B8282E9DE50071AA85 /* DragonsListRealm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragonsListRealm.swift; sourceTree = "<group>"; };
 		1FFD9CAC282841E600A7DEAF /* BioLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BioLabel.swift; sourceTree = "<group>"; };
@@ -90,9 +92,9 @@
 		1F8639A128255D2B000EDA0F /* DragonS */ = {
 			isa = PBXGroup;
 			children = (
-				1FB3F5DE2825A98600208929 /* Managers */,
-				1FB3F5DD2825A94C00208929 /* Models */,
 				1FB3F5DC2825A91600208929 /* ViewControllers */,
+				1FB3F5DD2825A94C00208929 /* Models */,
+				1FB3F5DE2825A98600208929 /* Managers */,
 				1FB3F5E32825C22800208929 /* CustomViews */,
 				1F91AAD42829779D00DC3C0F /* Extensions */,
 				1FB1A7D828270C240071CCD7 /* Utilities */,
@@ -170,14 +172,55 @@
 		1FB3F5E32825C22800208929 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				1FDBABDD283183EA00C09F30 /* StackViews */,
+				1FDBABDC283183DE00C09F30 /* Images */,
+				1FDBABDB283183CE00C09F30 /* CollectionViews */,
+				1FDBABDA283183C100C09F30 /* Buttons */,
+				1FDBABD9283183A200C09F30 /* Labels */,
 				1F91AAD9282981FE00DC3C0F /* Cells */,
-				1FFD9CAC282841E600A7DEAF /* BioLabel.swift */,
-				1FB3F5E82825C55500208929 /* DLabel.swift */,
-				1FFD9CAE2828499E00A7DEAF /* WikipediaButton.swift */,
-				1F91AAD728297CC700DC3C0F /* GalleryCollectionView.swift */,
-				1FB3AF9C282C02BE00932F0E /* DragonImage.swift */,
 			);
 			path = CustomViews;
+			sourceTree = "<group>";
+		};
+		1FDBABD9283183A200C09F30 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				1FFD9CAC282841E600A7DEAF /* BioLabel.swift */,
+				1FB3F5E82825C55500208929 /* DLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		1FDBABDA283183C100C09F30 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				1FFD9CAE2828499E00A7DEAF /* WikipediaButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		1FDBABDB283183CE00C09F30 /* CollectionViews */ = {
+			isa = PBXGroup;
+			children = (
+				1F91AAD728297CC700DC3C0F /* GalleryCollectionView.swift */,
+			);
+			path = CollectionViews;
+			sourceTree = "<group>";
+		};
+		1FDBABDC283183DE00C09F30 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				1FB3AF9C282C02BE00932F0E /* DragonImage.swift */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		1FDBABDD283183EA00C09F30 /* StackViews */ = {
+			isa = PBXGroup;
+			children = (
+				1FDBABD728317BF700C09F30 /* DStackView.swift */,
+			);
+			path = StackViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,6 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1FA4AFE22827A05A00C7A434 /* DragonInfo.swift in Sources */,
+				1FDBABD828317BF700C09F30 /* DStackView.swift in Sources */,
 				1F91AAD32829779600DC3C0F /* UIViewController+Ext.swift in Sources */,
 				1FB3F5E02825A9A800208929 /* NetworkManager.swift in Sources */,
 				1F91AAD828297CC700DC3C0F /* GalleryCollectionView.swift in Sources */,
