@@ -8,7 +8,7 @@
 import Foundation
 
 enum ErrorMessage: String, Error {
-case unableToComplite = "Unable to complited your request. Please check your internet connection."
-case invalidData = "The data received from server was invalid. Please try again."
-case invalidRespomse = ""
+    case unableToComplite = "Unable to complited your request. Please check your internet connection."
+    case invalidData = "The data received from server was invalid. Please try again."
+    case invalidUrl = "Ivalid response from server. Please, try again."
 }

@@ -26,5 +26,4 @@ class GalleryCell: UICollectionViewCell {
         addSubview(imageDragon)
         imageDragon.pinToEdges(of: self)
     }
-    
 }

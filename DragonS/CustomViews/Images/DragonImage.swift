@@ -18,11 +18,10 @@ class DragonImage: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
-   private func configure() {
+    private func configure() {
         translatesAutoresizingMaskIntoConstraints = false
         contentMode = .scaleAspectFill
         clipsToBounds = true
         layer.cornerRadius = 50
     }
-
 }

@@ -10,7 +10,7 @@ import UIKit
 class WikipediaButton: UIButton {
     
     let image = UIImage(systemName: "network")
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

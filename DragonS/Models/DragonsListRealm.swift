@@ -9,12 +9,11 @@ import Foundation
 import RealmSwift
 
 class DragonsListRealm: Object {
-    
     @objc dynamic var name = ""
     @objc dynamic var id = ""
     
-  convenience init(name: String, id: String) {
-      self.init()
+    convenience init(name: String, id: String) {
+        self.init()
         self.name = name
         self.id = id
     }

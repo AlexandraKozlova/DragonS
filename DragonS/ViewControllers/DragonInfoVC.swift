@@ -11,7 +11,7 @@ import Combine
 
 class DragonInfoVC: UIViewController {
     
-    var currentDragon: DragonInfo!
+    private var currentDragon: DragonInfo!
     
     init(currentDragon: DragonInfo) {
         super.init(nibName: nil, bundle: nil)
@@ -22,19 +22,19 @@ class DragonInfoVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    let scrollView = UIScrollView()
-    let contentView = UIView()
-    var galleryDragons = GalleryCollectionView()
-    let stackOfImages = DStackView()
-    let stackOfLabels = DStackView()
-    let firstFlightImage = UIImageView()
-    let firstFlightLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
-    let heightOfTrunkImage = UIImageView()
-    let heightOfTrunkLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
-    let dryMassImage = UIImageView()
-    let dryMassLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
-    let descriptionLabel = BioLabel()
-    let wikiButton = WikipediaButton()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
+    private var galleryDragons = GalleryCollectionView()
+    private let stackOfImages = DStackView()
+    private let stackOfLabels = DStackView()
+    private let firstFlightImage = UIImageView()
+    private let firstFlightLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
+    private let heightOfTrunkImage = UIImageView()
+    private let heightOfTrunkLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
+    private let dryMassImage = UIImageView()
+    private let dryMassLabel = DLabel(fontSize: 18, textAlignment: .left, textColor: #colorLiteral(red: 0.1764705926, green: 0.4980392158, blue: 0.7568627596, alpha: 1))
+    private let descriptionLabel = BioLabel()
+    private let wikiButton = WikipediaButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()

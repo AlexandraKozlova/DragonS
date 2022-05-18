@@ -8,13 +8,13 @@
 import UIKit
 
 class GalleryCollectionView: UICollectionView {
-
+    
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumLineSpacing = SizeConstants.galleryMinimumLineSpacing
         super.init(frame: .zero, collectionViewLayout: layout)
-       configure()
+        configure()
     }
     
     required init?(coder: NSCoder) {

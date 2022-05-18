@@ -11,12 +11,12 @@ import Combine
 
 class DragonsListVC: UIViewController {
     
-    var dragonsList = [DragonsList]()
-    var casheList = [DragonsList]()
+    private var dragonsList = [DragonsList]()
+    private var casheList = [DragonsList]()
     private var subscriptions = Set<AnyCancellable>()
     
-    let tableView = UITableView()
-    let refreshControl = UIRefreshControl()
+    private let tableView = UITableView()
+    private let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,7 +57,7 @@ class DragonsListVC: UIViewController {
         
         tableView.frame = view.bounds
         tableView.backgroundColor = .systemGray6
-        tableView.rowHeight = (tableView.frame.height / 2) - 50
+        tableView.rowHeight = (view.frame.height / 2) - 50
         tableView.separatorColor = .clear
         tableView.refreshControl = refreshControl
         tableView.delegate = self
